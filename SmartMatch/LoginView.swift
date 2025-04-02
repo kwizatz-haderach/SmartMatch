@@ -29,6 +29,7 @@ struct LoginView: View {
                 .padding(.horizontal)
 
             Button(action: {
+#warning("The below print will be removed after click tests are implemented")
                 print("Login tapped")
                 login()
             }) {
@@ -58,6 +59,11 @@ struct LoginView: View {
         guard let jsonData = try? JSONSerialization.data(withJSONObject: credentials) else {
             loginMessage = "Failed to encode data"
             return
+        }
+
+#warning("This block will be removed after login API is ready")
+        if let jsonString = String(data: jsonData, encoding: .utf8) {
+            print("JSON to send: \(jsonString)")
         }
 
         var request = URLRequest(url: url)

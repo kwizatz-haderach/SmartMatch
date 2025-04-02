@@ -27,7 +27,8 @@ struct ContentView: View {
                 
                 Button(action: {
                     
-                    print("Continue tapped")
+#warning("The below print will be removed after click tests are implemented")
+                    print("Get Started button tapped")
                     showLogin = true
                 }) {
                     Text("Get Started")
