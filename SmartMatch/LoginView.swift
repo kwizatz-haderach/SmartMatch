@@ -12,6 +12,7 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var loginMessage = ""
+    @State private var showRegister = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -41,6 +42,21 @@ struct LoginView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
+            
+            Button(action: {
+                showRegister = true
+            }) {
+                Text("Don't have an account? Register.")
+                    .font(.footnote)
+                    .foregroundColor(.blue)
+                    .underline()
+                    .padding(.top, 10)
+            }
+            .sheet(isPresented: $showRegister) {
+                RegisterView()
+            }
+            
+#warning("Below text field will be removed after login function is fully implemented")
             Text(loginMessage)
                 .foregroundColor(.gray)
                 .padding()
