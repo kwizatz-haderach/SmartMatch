@@ -30,7 +30,7 @@ struct LoginView: View {
                 .padding(.horizontal)
 
             Button(action: {
-#warning("The below print will be removed after click tests are implemented")
+#warning("Below print will be removed after click tests are implemented")
                 print("Login tapped")
                 login()
             }) {
