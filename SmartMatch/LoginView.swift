@@ -65,7 +65,7 @@ struct LoginView: View {
     }
     
     func login() {
-        guard let url = URL(string: "https://your-backend-api.com/login") else {
+        guard let url = URL(string: "https://nonexistent.barkancan.dev/register") else {
             loginMessage = "Invalid URL"
             return
         }
@@ -87,18 +87,26 @@ struct LoginView: View {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
 
+        
+#warning("Logs are going to be reconsidered from this request block later")
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
                     loginMessage = "Error: \(error.localizedDescription)"
+                    print("🛑 ERROR: \(error)")
                 }
                 return
             }
 
             if let httpResponse = response as? HTTPURLResponse {
                 DispatchQueue.main.async {
-                    loginMessage = "Status: \(httpResponse.statusCode)"
+                    loginMessage = "Status Code: \(httpResponse.statusCode)"
+                    print("🌐 Response code: \(httpResponse.statusCode)")
                 }
+            }
+            
+            if let data = data, let responseString = String(data: data, encoding: .utf8) {
+                print("📦 DATA: \(responseString)")
             }
         }.resume()
     }
