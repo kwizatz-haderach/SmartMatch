@@ -19,12 +19,12 @@ struct LoginView: View {
                 .font(.title)
                 .bold()
 
-            TextField("Email", text: .constant(""))
+            TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
                 .autocapitalization(.none)
 
-            SecureField("Password", text: .constant(""))
+            SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
 
@@ -40,6 +40,9 @@ struct LoginView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
+            Text(loginMessage)
+                .foregroundColor(.gray)
+                .padding()
         }
         .padding()
     }
@@ -77,7 +80,6 @@ struct LoginView: View {
             }
         }.resume()
     }
-    
 }
 
 #Preview {
