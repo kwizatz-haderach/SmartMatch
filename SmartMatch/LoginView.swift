@@ -65,12 +65,12 @@ struct LoginView: View {
     }
     
     func login() {
-        guard let url = URL(string: "https://nonexistent.barkancan.dev/register") else {
+        guard let url = URL(string: "https://nonexistent.barkancan.dev/login") else {
             loginMessage = "Invalid URL"
             return
         }
 
-        let credentials = ["email": email, "password": password]
+        let credentials = ["email": email, "password": Data(password.utf8).base64EncodedString()]
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: credentials) else {
             loginMessage = "Failed to encode data"

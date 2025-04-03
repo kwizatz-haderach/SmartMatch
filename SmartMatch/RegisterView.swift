@@ -64,7 +64,7 @@ struct RegisterView: View {
         let user = [
             "name": name,
             "email": email,
-            "password": password
+            "password": Data(password.utf8).base64EncodedString()
         ]
 
         guard let jsonData = try? JSONSerialization.data(withJSONObject: user) else {
